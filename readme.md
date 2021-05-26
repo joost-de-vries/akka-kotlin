@@ -1,6 +1,7 @@
-# kotlin coroutines and akka actors
+### kotlin coroutines and akka actors
 
-These are some experiments in what suspendable functions and channels can mean for Akka.
+These are some experiments in what suspendable functions and channels can mean for Akka.  
+I wrote [an article](https://gist.github.com/joost-de-vries/479bbd285c4de23cb5bade21d83e2e22) about it.  
 
 - [use channels](src/main/kotlin/akka/kotlin/classic/example0/channels.kt) to send messages to an Akka actor and receive them.  
 - [a channel as inbox](src/main/kotlin/akka/kotlin/classic/example4/channelInbox.kt) in the actor implementation. Calling async methods as suspending functions.  
