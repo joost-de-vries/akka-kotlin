@@ -1,7 +1,7 @@
 package akka.kotlin.classic.example5
 
 import akka.actor.*
-import akka.actor.Props
+import akka.kotlin.classic.Props
 import akka.kotlin.classic.*
 import akka.kotlin.classic.exampleshared.GetCounter
 import akka.kotlin.classic.exampleshared.counterResponse

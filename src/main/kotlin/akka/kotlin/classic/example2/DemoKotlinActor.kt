@@ -1,19 +1,15 @@
 package akka.kotlin.classic.example2
 
-import akka.actor.Props
 import akka.kotlin.classic.ChannelActor
+import akka.kotlin.classic.Props
 import akka.kotlin.classic.exampleshared.GetCounter
 import akka.kotlin.classic.exampleshared.counterResponse
 import akka.kotlin.classic.exampleshared.getCounterAsync
 import akka.kotlin.classic.runAkka
-import akka.pattern.Patterns.gracefulStop
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.future.await
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 import kotlin.time.ExperimentalTime
-import kotlin.time.seconds
-import kotlin.time.toJavaDuration
 
 class DemoKotlinActor : ChannelActor<GetCounter>() {
     init {

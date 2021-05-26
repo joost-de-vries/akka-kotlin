@@ -1,7 +1,7 @@
 package akka.kotlin.classic.example1
 
 import akka.actor.ActorRefFactory
-import akka.actor.Props
+import akka.kotlin.classic.Props
 import akka.kotlin.classic.ChannelActorMessage
 import akka.kotlin.classic.ChannelActorSuspend
 import akka.kotlin.classic.exampleshared.GetCounter

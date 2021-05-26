@@ -1,18 +1,10 @@
 package akka.kotlin.classic
 
-import akka.actor.AbstractActor
 import akka.actor.ActorRef
-import akka.actor.Props
-import akka.kotlin.classic.AkkaActorSystem
-import akka.kotlin.classic.actorSystem
-import akka.kotlin.shared.GetCounter
-import akka.kotlin.shared.IncCounter
 import akka.pattern.Patterns
-import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.future.asDeferred
 import kotlinx.coroutines.future.await
-import kotlinx.coroutines.runBlocking
 import scala.compat.java8.FutureConverters.toJava
 import scala.concurrent.Future
 

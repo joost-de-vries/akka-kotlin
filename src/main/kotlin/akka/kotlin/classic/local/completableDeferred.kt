@@ -1,7 +1,7 @@
 package akka.kotlin.classic.local
 
 import akka.actor.AbstractActor
-import akka.actor.Props
+import akka.kotlin.classic.Props
 import akka.kotlin.classic.*
 import akka.kotlin.shared.GetCounter
 import akka.kotlin.shared.IncCounter
@@ -35,11 +35,6 @@ internal class CounterActor() : AbstractActor() {
     }
 
     companion object {
-        fun props(): Props {
-            return Props.create(
-                CounterActor::class.java
-            ) { CounterActor() }
-        }
+        fun props() = Props.create { CounterActor() }
     }
-
 }
