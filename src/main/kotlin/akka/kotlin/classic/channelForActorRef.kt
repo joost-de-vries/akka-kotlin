@@ -1,7 +1,6 @@
-package akka.kotlin.classic.example0
+package akka.kotlin.classic
 
 import akka.actor.ActorRef
-import akka.kotlin.classic.ask
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
