@@ -21,7 +21,7 @@ abstract class ChannelActor<E> : AbstractCoroutineActorWithStash() {
         get() = _channel
 
     private val stashing: Receive = receiveBuilder()
-        .match(Next::class.java) {
+        .match<Next> {
             unstashAll()
             log("start processing")
             context.become(processing)
