@@ -5,6 +5,7 @@ import akka.kotlin.classic.Props
 import akka.kotlin.classic.ChannelActor
 import akka.kotlin.classic.exampleshared.GetCounter
 import akka.kotlin.classic.exampleshared.counterResponse
+import akka.kotlin.classic.exampleshared.getCounter
 import akka.kotlin.classic.exampleshared.getCounterAsync
 import akka.kotlin.classic.runAkka
 import akka.kotlin.classic.startReceive
@@ -40,8 +41,8 @@ fun main() = runAkka {
         // send requests in random order to verify concurrency
         launch {
             delay(Random.nextLong(100))
-            val response = channelActor.getCounterAsync(i)
-            System.err.println("sent $i received ${response.await().seqNr}")
+            val response = channelActor.getCounter(i)
+            System.err.println("sent $i received ${response.seqNr}")
         }
     }
 
