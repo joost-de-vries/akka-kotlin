@@ -9,7 +9,6 @@ import akka.kotlin.classic.runAkka
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.random.Random
-import kotlin.time.ExperimentalTime
 
 class DemoKotlinActor : ChannelActor<GetCounter>() {
     init {
@@ -25,26 +24,21 @@ class DemoKotlinActor : ChannelActor<GetCounter>() {
         }
     }
 
-    override fun postStop() {
-        System.err.println("actor stopped")
-    }
-
     companion object {
         fun props() = Props.create { DemoKotlinActor() }
     }
 }
 
-@OptIn(ExperimentalTime::class)
 fun main() = runAkka {
     actorSystem.registerOnTermination { System.err.println("actor system terminating") }
 
     val channelActor = actorSystem.actorOf(DemoKotlinActor.props())
 
     for (i in 1..10) {
-        // send requests in random order to verify
+        // send requests in random order to verify concurrency
         launch {
             delay(Random.nextLong(100))
-            val response = channelActor.getCounterAsync(i, 3000)
+            val response = channelActor.getCounterAsync(i, 6000)
             System.err.println("sent $i received ${response.await().seqNr}")
         }
     }
@@ -54,6 +48,6 @@ fun main() = runAkka {
 
 suspend fun slowService(request: Int): Int {
     //throw Exception()
-    delay(1000)
+    delay(500)
     return request
 }
