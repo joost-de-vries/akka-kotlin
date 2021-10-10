@@ -5,8 +5,8 @@ import akka.event.Logging
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ChannelIterator
+import kotlinx.coroutines.channels.ChannelResult
 import kotlinx.coroutines.channels.ReceiveChannel
-import kotlinx.coroutines.channels.ValueOrClosed
 import kotlinx.coroutines.selects.SelectClause1
 
 data class ChannelActorMessage<E>(val self: ActorRef, val msg: E, val sender: ActorRef)
@@ -29,15 +29,15 @@ abstract class ChannelActor<E> : AbstractCoroutineActorWithStash() {
         .matchAny { stash() }
         .build()
 
+    @Suppress("unchecked_cast")
     private val processing: Receive = receiveBuilder()
         .matchAny {
-            log("received msg from inbox, putting into channel. sender is ${sender}")
+            log("received msg from inbox, putting into channel. sender is $sender")
             val channelMessage = ChannelActorMessage(self = self, msg = it as E, sender = sender)
             context.become(stashing)
             sendToChannel(channelMessage)
         }.build()
 
-    @Suppress("unchecked_cast")
     override fun createReceive(): Receive {
         log("start processing")
         return processing
@@ -93,11 +93,6 @@ class ActorChannel<E>(private val channel: ReceiveChannel<ChannelActorMessage<E>
     override val onReceive: SelectClause1<E>
         get() = TODO("Not yet implemented")
 
-    @InternalCoroutinesApi
-    override val onReceiveOrClosed: SelectClause1<ValueOrClosed<E>>
-        get() = TODO("Not yet implemented")
-
-    @ObsoleteCoroutinesApi
     override val onReceiveOrNull: SelectClause1<E?>
         get() = TODO("Not yet implemented")
 
@@ -132,13 +127,18 @@ class ActorChannel<E>(private val channel: ReceiveChannel<ChannelActorMessage<E>
         return msg.msg
     }
 
-    @InternalCoroutinesApi
-    override suspend fun receiveOrClosed(): ValueOrClosed<E> {
+    override suspend fun receiveOrNull(): E? {
         TODO("Not yet implemented")
     }
 
-    @ObsoleteCoroutinesApi
-    override suspend fun receiveOrNull(): E? {
+    override val onReceiveCatching: SelectClause1<ChannelResult<E>>
+        get() = TODO("Not yet implemented")
+
+    override suspend fun receiveCatching(): ChannelResult<E> {
+        TODO("Not yet implemented")
+    }
+
+    override fun tryReceive(): ChannelResult<E> {
         TODO("Not yet implemented")
     }
 

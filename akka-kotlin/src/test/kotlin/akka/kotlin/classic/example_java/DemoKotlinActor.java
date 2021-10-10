@@ -1,10 +1,8 @@
 package akka.kotlin.classic.example_java;
 
-import akka.actor.AbstractActor;
 import akka.actor.AbstractActorWithStash;
 import akka.kotlin.classic.exampleshared.GetCounter;
-import akka.pattern.Patterns;
-import scala.Int;
+
 import static akka.pattern.Patterns.pipe;
 
 import java.util.concurrent.CompletableFuture;

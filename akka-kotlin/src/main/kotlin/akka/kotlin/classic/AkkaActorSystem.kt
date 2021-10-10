@@ -2,12 +2,9 @@ package akka.kotlin.classic
 
 import akka.actor.*
 import akka.actor.typed.javadsl.*
-import akka.kotlin.typed.AbstractCoroutineBehavior
 import kotlinx.coroutines.*
-import kotlinx.coroutines.future.asCompletableFuture
 import kotlin.coroutines.AbstractCoroutineContextElement
 import kotlin.coroutines.CoroutineContext
-import java.util.concurrent.CompletableFuture
 import kotlin.coroutines.EmptyCoroutineContext
 
 class AkkaActorSystem(val actorSystem: ActorSystem) : AbstractCoroutineContextElement(AkkaActorSystem) {
@@ -21,8 +18,9 @@ fun CoroutineScope.actorSystem() = (coroutineContext[AkkaActorSystem]?: throw Il
 fun CoroutineScope.actorSystemOrNull() = coroutineContext[AkkaActorSystem]?.actorSystem
 
 object Props{
-    inline fun <reified A: Actor> create(noinline creator: ()->A): akka.actor.Props = akka.actor.Props.create(A::class.java, creator)
+    inline fun <reified A: Actor> create(noinline creator: ()->A): akka.actor.Props = createProps(creator)
 }
+inline fun <reified A: Actor> createProps(noinline creator: ()->A): akka.actor.Props = akka.actor.Props.create(A::class.java, creator)
 
 fun <T> runAkka(context: CoroutineContext = EmptyCoroutineContext, block: suspend AkkaScope.() -> T): T {
     val akkaActorSystemFromContext = context[AkkaActorSystem]
