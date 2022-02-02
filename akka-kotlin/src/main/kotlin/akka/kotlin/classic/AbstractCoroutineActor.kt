@@ -2,12 +2,10 @@ package akka.kotlin.classic
 
 import akka.actor.AbstractActor
 import akka.actor.AbstractActorWithStash
-import akka.actor.Actor
 import akka.actor.PoisonPill
 import akka.event.Logging
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.isActive
 import kotlin.coroutines.CoroutineContext
 
 abstract class AbstractCoroutineActor() : AbstractActor(), CoroutineScope {

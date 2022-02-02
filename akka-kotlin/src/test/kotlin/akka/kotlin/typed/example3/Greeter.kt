@@ -72,7 +72,7 @@ java.lang.UnsupportedOperationException: Unsupported access to ActorContext from
 	at akka.actor.typed.internal.adapter.ActorContextAdapter.getLog(ActorContextAdapter.scala:49)
 	at akka.kotlin.typedChannel.GreeterKt$Greeter2$1.invokeSuspend(Greeter.kt:82)
 	at akka.kotlin.typedChannel.GreeterKt$Greeter2$1.invoke(Greeter.kt)
-	at akka.kotlin.typed.AkkaTypedChannel$1.invokeSuspend(Greeter.kt:58)
+	at AkkaTypedChannel$1.invokeSuspend(Greeter.kt:58)
 	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
  */
 

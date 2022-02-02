@@ -2,12 +2,9 @@ package akka.kotlin.classic
 
 import akka.actor.*
 import akka.actor.typed.javadsl.*
-import akka.kotlin.typed.AbstractCoroutineBehavior
 import kotlinx.coroutines.*
-import kotlinx.coroutines.future.asCompletableFuture
 import kotlin.coroutines.AbstractCoroutineContextElement
 import kotlin.coroutines.CoroutineContext
-import java.util.concurrent.CompletableFuture
 import kotlin.coroutines.EmptyCoroutineContext
 
 class AkkaActorSystem(val actorSystem: ActorSystem) : AbstractCoroutineContextElement(AkkaActorSystem) {
